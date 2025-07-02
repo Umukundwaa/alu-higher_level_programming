@@ -1,3 +1,5 @@
 #!/bin/bash
-python3 -m py_compile "$PYFILE"
-mv "${PYFILE}c" "${PYFILE}c"
+# Compile Python file using PYFILE env variable and create .pyc output
+
+python3 -m compileall -q "$PYFILE"
+cp "__pycache__/$(basename "$PYFILE" .py).cpython-"*.pyc "${PYFILE}c"
