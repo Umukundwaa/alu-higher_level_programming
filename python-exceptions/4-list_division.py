@@ -7,16 +7,15 @@ def list_division(my_list_1, my_list_2, list_length):
             b = my_list_2[i]
             if not (isinstance(a, (int, float)) and isinstance(b, (int, float))):
                 print("wrong type")
-                result.append(0)
-                continue
-            result.append(a / b)
+                res = 0
+            else:
+                res = a / b
         except ZeroDivisionError:
             print("division by 0")
-            result.append(0)
+            res = 0
         except IndexError:
             print("out of range")
-            result.append(0)
-        except Exception:
-            # Just in case of unexpected error, append 0
-            result.append(0)
+            res = 0
+        finally:
+            result.append(res)
     return result
