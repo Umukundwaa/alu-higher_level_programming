@@ -41,16 +41,15 @@ class SinglyLinkedList:
         self.__head = None
 
     def sorted_insert(self, value):
-        """Insert a new Node into the correct sorted position (increasing order)."""
+        """Insert a new Node in the correct sorted position
+        (increasing order)."""
         new_node = Node(value)
 
-        # Case 1: List is empty or value should be new head
         if self.__head is None or value < self.__head.data:
             new_node.next_node = self.__head
             self.__head = new_node
             return
 
-        # Case 2: Traverse and insert at proper place
         current = self.__head
         while current.next_node is not None and current.next_node.data < value:
             current = current.next_node
@@ -59,7 +58,8 @@ class SinglyLinkedList:
         current.next_node = new_node
 
     def __str__(self):
-        """Return string representation of the entire list, one data per line."""
+        """Return string representation of the entire list.
+        One data value per line."""
         values = []
         current = self.__head
         while current is not None:
