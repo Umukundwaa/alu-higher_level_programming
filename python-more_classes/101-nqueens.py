@@ -1,9 +1,10 @@
 #!/usr/bin/python3
+"""Solves the N Queens problem"""
 import sys
 
 
-def is_safe(board, row, col):
-    """Check if a queen can be safely placed at board[row][col]"""
+def is_safe(board, row, col, n):
+    """Check if placing a queen at (row, col) is safe"""
     for i in range(row):
         if board[i] == col or \
            board[i] - i == col - row or \
@@ -12,20 +13,25 @@ def is_safe(board, row, col):
     return True
 
 
-def solve_nqueens(n, row, board):
-    """Recursively solve the N-Queens problem"""
-    if row == n:
-        print([[i, board[i]] for i in range(n)])
-        return
+def solve_nqueens(n):
+    """Backtracking function to solve the problem"""
+    def backtrack(row, board):
+        if row == n:
+            result = [[r, board[r]] for r in range(n)]
+            solutions.append(result)
+            return
+        for col in range(n):
+            if is_safe(board, row, col, n):
+                board[row] = col
+                backtrack(row + 1, board)
+    solutions = []
+    board = [-1] * n
+    backtrack(0, board)
+    return solutions
 
-    for col in range(n):
-        if is_safe(board, row, col):
-            board[row] = col
-            solve_nqueens(n, row + 1, board)
 
-
-def main():
-    """Main function to validate input and start solving"""
+# ----- Main Execution -----
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
@@ -40,9 +46,6 @@ def main():
         print("N must be at least 4")
         sys.exit(1)
 
-    board = [0] * n
-    solve_nqueens(n, 0, board)
-
-
-if __name__ == "__main__":
-    main()
+    solutions = solve_nqueens(n)
+    for sol in solutions:
+        print(sol)
