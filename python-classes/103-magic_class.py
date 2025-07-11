@@ -8,8 +8,8 @@ import math
 
 class MagicClass:
     """
-    Class with a private radius attribute, and methods to compute area
-    and circumference.
+    Class with a private radius attribute, and methods to compute
+    area and circumference.
     """
 
     def __init__(self, radius=0):
