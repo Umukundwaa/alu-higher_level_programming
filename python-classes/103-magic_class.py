@@ -1,11 +1,16 @@
 #!/usr/bin/python3
-"""Defines MagicClass matching given bytecode behavior."""
+"""
+Defines MagicClass matching given bytecode behavior.
+"""
 
 import math
 
 
 class MagicClass:
-    """Class with a private radius attribute, area, and circumference methods."""
+    """
+    Class with a private radius attribute, and methods to compute area
+    and circumference.
+    """
 
     def __init__(self, radius=0):
         if type(radius) is not int and type(radius) is not float:
